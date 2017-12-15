@@ -1,7 +1,7 @@
 {
     "name": "apatis/config",
-    "description": "",
-    "type": "project",
+    "description": "Config nested library",
+    "type": "library",
     "require": {
         "php": "^7.0",
         "josegonzalez/dotenv": "^3.2",
