@@ -1,0 +1,26 @@
+{
+    "name": "apatis/config",
+    "description": "",
+    "type": "project",
+    "require": {
+        "php": "^7.0",
+        "josegonzalez/dotenv": "^3.2",
+        "symfony/yaml": "^3.4"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "3.*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "apatis",
+            "email": "apatisdevelopment@gmail.com",
+            "role": "developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Apatis\\Config\\" : "src/"
+        }
+    }
+}
