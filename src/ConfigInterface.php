@@ -89,11 +89,11 @@ interface ConfigInterface extends \ArrayAccess, \Countable, \IteratorAggregate
     /**
      * Merge config
      *
-     * @param Config $config
+     * @param ConfigInterface $config
      *
      * @return static|ConfigInterface
      */
-    public function merge(Config $config) : ConfigInterface;
+    public function merge(ConfigInterface $config) : ConfigInterface;
 
     /**
      * just make sure it was callable

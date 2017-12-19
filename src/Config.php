@@ -103,18 +103,20 @@ class Config implements ConfigInterface
     /**
      * {@inheritdoc}
      */
-    public function merge(Config $config) : ConfigInterface
+    public function merge(ConfigInterface $config) : ConfigInterface
     {
         return $this->mergeConfigInstance($config);
     }
 
     /**
-     * @param Config $config
-     * @param Config|null $instance
+     * Method to handle merge config
+     *
+     * @param ConfigInterface $config
+     * @param ConfigInterface|null $instance
      *
      * @return Config
      */
-    final protected function mergeConfigInstance(Config $config, Config $instance = null) : Config
+    final protected function mergeConfigInstance(ConfigInterface $config, ConfigInterface $instance = null) : ConfigInterface
     {
         $instance  = $instance?: $this;
 
