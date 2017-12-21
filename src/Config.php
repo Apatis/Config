@@ -116,8 +116,10 @@ class Config implements ConfigInterface
      *
      * @return Config
      */
-    final protected function mergeConfigInstance(ConfigInterface $config, ConfigInterface $instance = null) : ConfigInterface
-    {
+    final protected function mergeConfigInstance(
+        ConfigInterface $config,
+        ConfigInterface $instance = null
+    ) : ConfigInterface {
         $instance  = $instance?: $this;
 
         // if offset detect as an increment array
@@ -142,6 +144,18 @@ class Config implements ConfigInterface
         }
 
         return $instance;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clear() : ConfigInterface
+    {
+        foreach (get_object_vars($this) as $key => $value) {
+            $this->remove($key);
+        }
+
+        return $this;
     }
 
     /**

@@ -96,6 +96,13 @@ interface ConfigInterface extends \ArrayAccess, \Countable, \IteratorAggregate
     public function merge(ConfigInterface $config) : ConfigInterface;
 
     /**
+     * Clear all records
+     *
+     * @return ConfigInterface
+     */
+    public function clear() : ConfigInterface;
+
+    /**
      * just make sure it was callable
      * and can be placed on container
      *
