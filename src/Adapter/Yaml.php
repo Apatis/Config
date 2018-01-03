@@ -51,7 +51,7 @@ class Yaml extends ConfigAdapterAbstract
 
                 $array = yaml_parse_file($file);
                 restore_error_handler();
-                if (is_array($array)) {
+                if (!is_array($array)) {
                     throw new \RuntimeException(
                         sprintf(
                             'Configuration file in : %s does not return array',
@@ -67,7 +67,7 @@ class Yaml extends ConfigAdapterAbstract
         }
 
         $array =  SymfonyYAML::parse(file_get_contents($file));
-        if (is_array($array)) {
+        if (!is_array($array)) {
             throw new \RuntimeException(
                 sprintf(
                     'Configuration file in : %s does not return array',
