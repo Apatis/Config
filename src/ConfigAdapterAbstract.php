@@ -31,47 +31,43 @@ namespace Apatis\Config;
 abstract class ConfigAdapterAbstract extends Config implements ConfigAdapterInterface
 {
     /**
-     * @var string
-     */
-    private $file;
-
-    /**
      * {@inheritdoc}
      */
     public static function fromFile(string $file) : ConfigInterface
     {
         $object = new static();
-        $object->file = $file;
-        $object->replace($object->readFile());
+        $object->replace($object->readFile($file));
         return $object;
     }
 
     /**
      * Read current file
      *
+     * @param string $file
+     *
      * @return array
      *
      * @throws \InvalidArgumentException
      * @throws \RuntimeException
      */
-    protected function readFile() : array
+    protected function readFile(string $file) : array
     {
-        if (!file_exists($this->file)) {
+        if (!file_exists($file)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     'Configuration %s is not exists',
-                    $this->file
+                    $file
                 ),
                 E_WARNING
             );
         }
 
-        if (!is_array(($configs = $this->parseFromFile($this->file)))) {
+        if (!is_array(($configs = $this->parseFromFile($file)))) {
             throw new \RuntimeException(
                 sprintf(
                     'Invalid %s configuration from file: %s',
                     ltrim(strrchr(get_class($this), '\\'), '\\'),
-                    $this->file
+                    $file
                 ),
                 E_NOTICE
             );

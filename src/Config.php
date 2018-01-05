@@ -189,6 +189,9 @@ class Config implements ConfigInterface
             $array[] = true;
             end($array);
             $offset = key($array);
+        } elseif (is_string($offset) && substr($offset, 0, 1) === "\0") {
+            // prevent to invalid offset
+            return;
         }
 
         $this->{$offset} = is_array($value) ? new static($value) : $value;
