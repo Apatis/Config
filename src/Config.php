@@ -130,14 +130,21 @@ class Config implements ConfigInterface
         $increment = key($arrayInstance);
         unset($arrayInstance);
         foreach (get_object_vars($config) as $key => $value) {
-            if (isset($instance->{$key}) && $value instanceof Config) {
-                $instance->mergeConfigInstance($value, $instance);
-                continue;
-            }
+            if (isset($instance->{$key})) {
+                if ($value instanceof Config) {
+                    if ($instance->{$key} instanceof Config) {
+                        $instance->mergeConfigInstance($value, $instance->{$key});
+                        continue;
+                    }
 
-            if (isset($instance->{$key}) && is_numeric($key) && is_int(abs($key))) {
-                $key = $increment;
-                $increment++;
+                    $instance->{$key} = $value;
+                    continue;
+                }
+
+                if (is_numeric($key) && is_int(abs($key))) {
+                    $key = $increment;
+                    $increment++;
+                }
             }
 
             $instance->{$key} = $value;
